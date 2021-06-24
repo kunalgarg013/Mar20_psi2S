@@ -119,7 +119,7 @@ double TaskDimuonPP::WeightMaps(int runNumber)
 {
   std::map<int,double> mymap;
   //LHC15o runList start
-  
+
   mymap[295584] =   0.999355;
   mymap[295585] =   1.00209;
   mymap[295586] =   1.00018;
@@ -380,7 +380,7 @@ double TaskDimuonPP::WeightMaps(int runNumber)
 
 
   return mymap[runNumber];
-  
+
 }
 
 
@@ -460,7 +460,7 @@ void TaskDimuonPP::UserExec(Option_t *) {
   Bool_t isSelectedCMULEvent = kFALSE;
   Bool_t isSelectedCMLLEvent = kFALSE;
 
- 
+
 
   TString strFiredTriggers;
   aod = static_cast<AliAODEvent *>(InputEvent());
@@ -475,7 +475,7 @@ void TaskDimuonPP::UserExec(Option_t *) {
    AliMultSelection *multSelection = (AliMultSelection * ) aod->FindListObject("MultSelection");
   Double_t eventCentrality = multSelection->GetMultiplicityPercentile("V0M", false);
   if(eventCentrality > 90) return;
-  
+
   Int_t runNumber = aod->GetRunNumber();
 
   double weightCMLL = WeightMaps(runNumber);
@@ -491,7 +491,7 @@ void TaskDimuonPP::UserExec(Option_t *) {
   if (strFiredTriggers.Contains("CMUL7-B-NOPF-MUFAST") &&
       (IsSelected & AliVEvent::kMuonUnlikeLowPt7)) {
     isSelectedCMULEvent = kTRUE;
-  } 
+  }
   if (IsSelected & AliVEvent::kMuonLikeLowPt7) {
     if(strFiredTriggers.Contains("CMLL7-B-NOPF-MUFAST"))
     isSelectedCMLLEvent = kTRUE;
@@ -504,7 +504,7 @@ void TaskDimuonPP::UserExec(Option_t *) {
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   // Track selection and analysis
   if(isSelectedCMLLEvent || isSelectedCMULEvent)
-  { 
+  {
     Double_t weight = 1;
     if(isSelectedCMLLEvent && !isSelectedCMULEvent){weight = weightCMLL;}   //Define the WEIGHTS FOR CMLL events
     AliVEvent *aodesd = NULL;
@@ -533,50 +533,50 @@ void TaskDimuonPP::UserExec(Option_t *) {
         if (!fMuonTrackCuts->IsSelected(muonTrack2))
           continue; // include cuts on pDCA, Eta, Rabs.
         TrackToLorentzVector(muonTrack2, lvMuon2);
-        
+
         lvDimuon = lvMuon1 + lvMuon2;
         Double_t diMuonValues[4]= {lvDimuon.Pt(), lvDimuon.M(), lvDimuon.Rapidity(), eventCentrality};
-        
+
         if (muonTrack1->Charge() != muonTrack2->Charge())
         {
-          
+
           fSparseDimuonOpp->Sumw2();
           fSparseDimuonOpp->Fill(diMuonValues, 1./weight);
 
           fSparseDimuonOpp->GetAxis(0)->SetTitle("#mu#mu_{P_{t}} GeV/c" );
           fSparseDimuonOpp->GetAxis(1)->SetTitle("#mu#mu_{IM} GeV/c^{2}" );
           fSparseDimuonOpp->GetAxis(2)->SetTitle("#mu#mu_{Rapidity}" );
-          fSparseDimuonOpp->GetAxis(3)->SetTitle("Event Centrality" );  
+          fSparseDimuonOpp->GetAxis(3)->SetTitle("Event Centrality" );
         }
         if (muonTrack1->Charge() <0 && muonTrack2->Charge() <0 )
         {
-          
+
           fSparseDimuonNeg->Sumw2();
           fSparseDimuonNeg->Fill(diMuonValues, 1./weight);
 
           fSparseDimuonNeg->GetAxis(0)->SetTitle("#mu#mu_{P_{t}} GeV/c" );
           fSparseDimuonNeg->GetAxis(1)->SetTitle("#mu#mu_{IM} GeV/c^{2}" );
           fSparseDimuonNeg->GetAxis(2)->SetTitle("#mu#mu_{Rapidity}" );
-          fSparseDimuonNeg->GetAxis(3)->SetTitle("Event Centrality" );  
+          fSparseDimuonNeg->GetAxis(3)->SetTitle("Event Centrality" );
         }
         if (muonTrack1->Charge()>0 && muonTrack2->Charge()>0 )
         {
-          
+
           fSparseDimuonPlus->Sumw2();
           fSparseDimuonPlus->Fill(diMuonValues, 1./weight);
 
           fSparseDimuonPlus->GetAxis(0)->SetTitle("#mu#mu_{P_{t}} GeV/c" );
           fSparseDimuonPlus->GetAxis(1)->SetTitle("#mu#mu_{IM} GeV/c^{2}" );
           fSparseDimuonPlus->GetAxis(2)->SetTitle("#mu#mu_{Rapidity}" );
-          fSparseDimuonPlus->GetAxis(3)->SetTitle("Event Centrality" );  
+          fSparseDimuonPlus->GetAxis(3)->SetTitle("Event Centrality" );
         }
-        
-        
+
+
       }
     }
   }
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
-  
+
 
   PostData(1, fListEvent);
 }

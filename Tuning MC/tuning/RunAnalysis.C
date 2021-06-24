@@ -64,7 +64,10 @@ enum enumEarlyStopingMode
   kFitFuncDelta
 };
 
-void RunAnalysis(int excutedFunction = kAllFunctions, TString strCentralityBins = "0,90", int iterationStart = 0, int iterationEnd = 6, Bool_t earlyStop = kTRUE, int earlyStopMode = kAccEffiDelta, Double_t stopThreshold = 0.2)
+// void RunAnalysis(int excutedFunction = kAllFunctions, TString strCentralityBins = "0,10", int iterationStart = 0, int iterationEnd = 10, Bool_t earlyStop = kTRUE, int earlyStopMode = kAccEffiDelta, Double_t stopThreshold = 0.2)
+
+void RunAnalysis(int excutedFunction = kAllFunctions, TString strCentralityBins = "0,10;10,20; 20,40; 40,60; 60,90", int iterationStart = 0, int iterationEnd = 6, Bool_t earlyStop = kTRUE, int earlyStopMode = kAccEffiDelta, Double_t stopThreshold = 0.2)
+
 {
   if (verbose == 0)
   {

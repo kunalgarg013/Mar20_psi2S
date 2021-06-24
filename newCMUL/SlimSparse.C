@@ -16,6 +16,9 @@ void SlimSparse()
     TObjArray *arr =(TObjArray*)file->Get("ListEvent");
     THnSparse* hSparseDimuon  = (THnSparseF*)arr->FindObject("fSparseDimuon");
 
+
+
+
     const Int_t axis[4] = {2,3,4,5};
 
     fhDimuonLight = hSparseDimuon->Projection(4,axis,"e");

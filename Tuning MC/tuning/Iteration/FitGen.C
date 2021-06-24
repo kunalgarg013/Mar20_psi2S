@@ -49,7 +49,7 @@ void FitPtGen(int centMin = 0, int centMax = 10)
     TF1 *fPtDistribution = new TF1("fPtDistribution", pT_shape, histoGenPt->GetXaxis()->GetXmin(), histoGenPt->GetXaxis()->GetXmax(), 4);
     fPtDistribution->SetLineColor(myColorsMap["red"]);
     fPtDistribution->SetParameter(0, histoGenPt->GetMaximum());
-    fPtDistribution->SetParameter(1, 4);
+    fPtDistribution->SetParameter(1, 1);
     fPtDistribution->SetParameter(2, 2);
     fPtDistribution->SetParameter(3, 3);
 

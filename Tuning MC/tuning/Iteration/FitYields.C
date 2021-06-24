@@ -23,6 +23,7 @@ For a given iteration step, this macro calculate the yield of J/psi vs pt using 
 #include "TGaxis.h"
 #include "TLegend.h"
 #include "TString.h"
+#include "TMinuit.h"
 
 //--------------------------------------------------------------------------------------------//
 // TFile *inputRawYieldFile = TFile::Open("./RawYields/NJpsi_Raw.root");
@@ -34,11 +35,11 @@ int FitPtYield(TH1 *histoYiledVsPt, bool draw = false)
   TF1 *fPtDistribution = new TF1("fPtDistribution", pT_shape, histoYiledVsPt->GetXaxis()->GetXmin(), histoYiledVsPt->GetXaxis()->GetXmax(), 4);
   fPtDistribution->SetLineColor(myColorsMap["red"]);
   fPtDistribution->SetParameter(0, histoYiledVsPt->GetMaximum());
-  fPtDistribution->SetParameter(1, 4);
+  fPtDistribution->SetParameter(1, -3.3);
   fPtDistribution->SetParameter(2, 2);
-  fPtDistribution->SetParameter(3, 3);
+  fPtDistribution->SetParameter(3, 3.5);
 
-  TString fitOpt = "SRIQ";
+  TString fitOpt = "SIRQ";
   if (!draw)
   {
     fitOpt.Append("0");
@@ -52,6 +53,7 @@ int FitPtYield(TH1 *histoYiledVsPt, bool draw = false)
   do
   {
     fPtDistribution->SetParameter(1, initParam + paramStep * customStepCounter);
+    // gMinuit->Command("SET STRATEGY 2");
     fitResultPtr = histoYiledVsPt->Fit(fPtDistribution, fitOpt, "", ptFitRangeMin, ptFitRangeMax);
     chi2OverNDF = fPtDistribution->GetChisquare() / fPtDistribution->GetNDF();
     customStepCounter++;

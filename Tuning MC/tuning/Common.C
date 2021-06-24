@@ -40,8 +40,8 @@ TFile *inputFileRawYield = TFile::Open("./RawYields/NJpsi_Raw.root");
 TString inputMCFilesDir = "./GridAnalysis/outputFiles/";
 
 // Fit ranges (update, this was automatically taken as the raw yield extent but added manually for now to allow exclusion of photoproduction in the fit to the yield):
-Double_t ptFitRangeMin = 0.3;
-Double_t ptFitRangeMax = 15;
+Double_t ptFitRangeMin = 0;
+Double_t ptFitRangeMax = 12;
 Double_t rapFitRangeMin = -4;
 Double_t rapFitRangeMax = -2.5;
 //Input files for CMUL weighting:
