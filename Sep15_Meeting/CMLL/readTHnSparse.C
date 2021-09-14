@@ -93,7 +93,115 @@ void Sparse_2018()
 
 }
 
+void Sparse_2015()
+{
+
+    TFile* f1 = new TFile("CMLL_2015_AnalysisResults.root");
+    TObjArray *arr =(TObjArray*)f1->Get("ListEvent");
+    THnSparse* hSparseDimuonUnlike     = (THnSparse*)arr->FindObject("fSparseDimuonOpp");
+    THnSparse* hSparseDimuonPPlike     = (THnSparse*)arr->FindObject("fSparseDimuonPlus");
+    THnSparse* hSparseDimuonMMlike     = (THnSparse*)arr->FindObject("fSparseDimuonNeg");
+
+
+    TH1F *hSig[100];
+
+    SetSparseRange(hSparseDimuonUnlike, 2, -4., -2.5 - 1e-6, "");
+    SetSparseRange(hSparseDimuonUnlike, 3, 0, 90 - 1e-6, "");
+    hSig[1]=(TH1F*)hSparseDimuonUnlike->Projection(3);//projection x
+    hSig[1]->SetNameTitle("IM_2015_Unlike_Cent0to90", "IM_2015_Unlike_Cent0to90");
+
+
+    SetSparseRange(hSparseDimuonUnlike, 3, 0, 20 - 1e-6, "");
+    hSig[2]=(TH1F*)hSparseDimuonUnlike->Projection(3);//projection x
+    hSig[2]->SetNameTitle("IM_2015_Unlike_Cent0to20", "IM_2015_Unlike_Cent0to20");
+
+    SetSparseRange(hSparseDimuonPPlike, 2, -4., -2.5 - 1e-6, "");
+    SetSparseRange(hSparseDimuonPPlike, 3, 0, 90 - 1e-6, "");
+    hSig[3]=(TH1F*)hSparseDimuonPPlike->Projection(3);//projection x
+    hSig[3]->SetNameTitle("IM_2015_PPlike_Cent0to90", "IM_2015_PPlike_Cent0to90");
+
+    SetSparseRange(hSparseDimuonPPlike, 3, 0, 20 - 1e-6, "");
+    hSig[4]=(TH1F*)hSparseDimuonPPlike->Projection(3);//projection x
+    hSig[4]->SetNameTitle("IM_2015_PPlike_Cent0to20", "IM_2015_PPlike_Cent0to20");
+
+    SetSparseRange(hSparseDimuonMMlike, 2, -4., -2.5 - 1e-6, "");
+    SetSparseRange(hSparseDimuonMMlike, 3, 0, 90 - 1e-6, "");
+    hSig[5]=(TH1F*)hSparseDimuonMMlike->Projection(3);//projection x
+    hSig[5]->SetNameTitle("IM_2015_MMlike_Cent0to90", "IM_2015_MMlike_Cent0to90");
+
+    SetSparseRange(hSparseDimuonMMlike, 3, 0, 20 - 1e-6, "");
+    hSig[6]=(TH1F*)hSparseDimuonMMlike->Projection(3);//projection x
+    hSig[6]->SetNameTitle("IM_2015_MMlike_Cent0to20", "IM_2015_MMlike_Cent0to20");
+
+
+    TFile* fOutput = new TFile("Output_CMLL.root", "UPDATE");
+    fOutput->cd();
+    hSig[1]->Write();
+    hSig[2]->Write();
+    hSig[3]->Write();
+    hSig[4]->Write();
+    hSig[5]->Write();
+    hSig[6]->Write();
+    fOutput->Close();
+
+}
+
+void Sparse_combined()
+{
+
+    TFile* f1 = new TFile("CMLL_oqr_AnalysisResults.root");
+    TObjArray *arr =(TObjArray*)f1->Get("ListEvent");
+    THnSparse* hSparseDimuonUnlike     = (THnSparse*)arr->FindObject("fSparseDimuonOpp");
+    THnSparse* hSparseDimuonPPlike     = (THnSparse*)arr->FindObject("fSparseDimuonPlus");
+    THnSparse* hSparseDimuonMMlike     = (THnSparse*)arr->FindObject("fSparseDimuonNeg");
+
+
+    TH1F *hSig[100];
+
+    SetSparseRange(hSparseDimuonUnlike, 2, -4., -2.5 - 1e-6, "");
+    SetSparseRange(hSparseDimuonUnlike, 3, 0, 90 - 1e-6, "");
+    hSig[1]=(TH1F*)hSparseDimuonUnlike->Projection(3);//projection x
+    hSig[1]->SetNameTitle("IM_Unlike_Cent0to90", "IM_Unlike_Cent0to90");
+
+
+    SetSparseRange(hSparseDimuonUnlike, 3, 0, 20 - 1e-6, "");
+    hSig[2]=(TH1F*)hSparseDimuonUnlike->Projection(3);//projection x
+    hSig[2]->SetNameTitle("IM_Unlike_Cent0to20", "IM_Unlike_Cent0to20");
+
+    SetSparseRange(hSparseDimuonPPlike, 2, -4., -2.5 - 1e-6, "");
+    SetSparseRange(hSparseDimuonPPlike, 3, 0, 90 - 1e-6, "");
+    hSig[3]=(TH1F*)hSparseDimuonPPlike->Projection(3);//projection x
+    hSig[3]->SetNameTitle("IM_PPlike_Cent0to90", "IM_PPlike_Cent0to90");
+
+    SetSparseRange(hSparseDimuonPPlike, 3, 0, 20 - 1e-6, "");
+    hSig[4]=(TH1F*)hSparseDimuonPPlike->Projection(3);//projection x
+    hSig[4]->SetNameTitle("IM_PPlike_Cent0to20", "IM_PPlike_Cent0to20");
+
+    SetSparseRange(hSparseDimuonMMlike, 2, -4., -2.5 - 1e-6, "");
+    SetSparseRange(hSparseDimuonMMlike, 3, 0, 90 - 1e-6, "");
+    hSig[5]=(TH1F*)hSparseDimuonMMlike->Projection(3);//projection x
+    hSig[5]->SetNameTitle("IM_MMlike_Cent0to90", "IM_MMlike_Cent0to90");
+
+    SetSparseRange(hSparseDimuonMMlike, 3, 0, 20 - 1e-6, "");
+    hSig[6]=(TH1F*)hSparseDimuonMMlike->Projection(3);//projection x
+    hSig[6]->SetNameTitle("IM_MMlike_Cent0to20", "IM_MMlike_Cent0to20");
+
+
+    TFile* fOutput = new TFile("Output_CMLL.root", "UPDATE");
+    fOutput->cd();
+    hSig[1]->Write();
+    hSig[2]->Write();
+    hSig[3]->Write();
+    hSig[4]->Write();
+    hSig[5]->Write();
+    hSig[6]->Write();
+    fOutput->Close();
+
+}
+
 void readTHnSparse()
 {
-    Sparse_2018();
+    // Sparse_2018();
+    // Sparse_2015();
+    Sparse_combined();
 }

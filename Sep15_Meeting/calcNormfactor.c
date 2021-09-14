@@ -57,11 +57,11 @@ void calcNormfactor()
 
     gROOT->ProcessLine("gErrorIgnoreLevel = 2002;");
     //    TFile *f1 = new TFile("files/CMLL_AnalysisResults.root");//ok
-    TFile *f1 = new TFile("CMLL/CMLL_2018_AnalysisResults.root");//ok
+    TFile *f1 = new TFile("CMLL/CMLL_oqr_AnalysisResults.root");//ok
     TObjArray *arr =(TObjArray*)f1->Get("ListEvent");
-    ofstream datnorm("norm_factor_2018.dat");
+    ofstream datnorm("norm_factor.dat");
 
-    TFile* fRacc = new TFile("rAcceptance_2018.root", "RECREATE");
+    TFile* fRacc = new TFile("rAcceptance.root", "RECREATE");
 
     const Double_t cLow[]     = {0,  0,  10, 20, 30, 40, 50, 60, 70, 80};
     const Double_t cHigh[]    = {90, 10, 20, 30, 40, 50, 60, 70, 80, 90};
@@ -72,7 +72,8 @@ void calcNormfactor()
 
 
     //TFile* f2                       = new TFile("files/mixingHisto.root");
-    TFile* f2                       = new TFile("CMSL/18qr_cmsl.root");
+    // TFile* f2                       = new TFile("CMSL/18qr_cmsl.root");
+    TFile* f2                       = new TFile("CMSL/oqr_cmsl.root");
     TDirectoryFile* unlikeArr       = (TDirectoryFile*)f2->Get("DimuonHistosUnlike");
     TDirectoryFile* InvMassUnlike   = (TDirectoryFile*)unlikeArr->Get("InvMass");
     TDirectoryFile* pTUnlike        = (TDirectoryFile*)unlikeArr->Get("Pt");
