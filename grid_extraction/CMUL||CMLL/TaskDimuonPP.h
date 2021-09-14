@@ -81,10 +81,10 @@ private:
   Int_t fFirstRun;
   Int_t fLastRun;
 
-  
-  THnSparseC *fSparseDimuonOpp;   //!
-  THnSparseC *fSparseDimuonPlus;   //!
-  THnSparseC *fSparseDimuonNeg;   //!
+
+  THnSparseF *fSparseDimuonOpp;   //!
+  THnSparseF *fSparseDimuonPlus;   //!
+  THnSparseF *fSparseDimuonNeg;   //!
 
   TObjArray *fListEvent;
 

@@ -84,7 +84,7 @@ private:
 
   TH1F *fHistoDimuonInvMass;
 
-  THnSparseC *fSparseDimuon;   //!
+  THnSparseF *fSparseDimuon;   //!
 
   TObjArray *fListEvent;
 

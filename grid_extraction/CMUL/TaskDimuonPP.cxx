@@ -145,7 +145,7 @@ void TaskDimuonPP::UserCreateOutputObjects() {
 Int_t bins[7] =    {300, 300,  300, 2000,  60, 100, fLastRun - fFirstRun};
 Double_t xmin[7] = {0.,   0.,   0.,   0., -5.,   0, (Double_t)fFirstRun};
 Double_t xmax[7] = {30., 30.,  30.,  20., -2., 100, (Double_t)fLastRun};
-fSparseDimuon = new THnSparseC("fSparseDimuon", "", 7, bins, xmin, xmax);
+fSparseDimuon = new THnSparseF("fSparseDimuon", "", 7, bins, xmin, xmax);
 
 
 fSparseDimuon->GetAxis(0)->SetBinLabel( 1, "Muon1Pt" );
@@ -262,7 +262,7 @@ void TaskDimuonPP::UserExec(Option_t *) {
       lvDimuon = lvMuon1 + lvMuon2;
       if (muonTrack1->Charge() == muonTrack2->Charge())
         continue;
-  
+
       // Here you can fill the dimuon containers:
       fHistoDimuonInvMass->Fill(lvDimuon.M());
 

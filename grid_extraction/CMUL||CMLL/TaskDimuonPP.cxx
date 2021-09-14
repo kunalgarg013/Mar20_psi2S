@@ -401,9 +401,9 @@ void TaskDimuonPP::UserCreateOutputObjects() {
 Int_t bins[4] =    {300, 2000,  60, 100};
 Double_t xmin[4] = {0.,   0.,  -5.,   0};
 Double_t xmax[4] = {30.,  20., -2., 100};
-fSparseDimuonOpp = new THnSparseC("fSparseDimuonOpp", "", 4, bins, xmin, xmax);
-fSparseDimuonPlus = new THnSparseC("fSparseDimuonPlus", "", 4, bins, xmin, xmax);
-fSparseDimuonNeg = new THnSparseC("fSparseDimuonNeg", "", 4, bins, xmin, xmax);
+fSparseDimuonOpp = new THnSparseF("fSparseDimuonOpp", "", 4, bins, xmin, xmax);
+fSparseDimuonPlus = new THnSparseF("fSparseDimuonPlus", "", 4, bins, xmin, xmax);
+fSparseDimuonNeg = new THnSparseF("fSparseDimuonNeg", "", 4, bins, xmin, xmax);
 
 
 fSparseDimuonOpp->GetAxis(0)->SetBinLabel( 1, "DiMuonPt" );
