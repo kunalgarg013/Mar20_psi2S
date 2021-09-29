@@ -88,7 +88,7 @@ void JpsiFitFunctions::DefineFunctions(RooRealVar *variable) {
     cbnPrime->setConstant(kTRUE);
     cbn->setConstant(kTRUE);
   }
-  
+
 
   //----------------------------------------------------------------------------------------------//
 
@@ -205,13 +205,24 @@ void JpsiFitFunctions::DefineFunctions(RooRealVar *variable) {
 
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   RooRealVar *C0 = new RooRealVar("C0", "C0", 30, -100, 100);
-  RooRealVar *C1 = new RooRealVar("C1", "C1", 0.9, -100, 100);
+  // RooRealVar *C1 = new RooRealVar("C1", "C1", 0.9, -100, 100);
+  RooRealVar *C1 = new RooRealVar("C1", "C1", 1., -100, 100);
   RooRealVar *expoSlope3 =
       new RooRealVar("expoSlope3", "expoSlope3", -6, -30, 10);
   ExpPol2 *bkgdExpPol2Function =
       new ExpPol2("bkgdExpPol2Function", "bkgdExpPol2Function", *variable, *C0,
                   *C1, *expoSlope3);
   fListOfFunctions->AddAt(bkgdExpPol2Function, kExpoPol2);
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
+
+   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+  RooRealVar *P0 = new RooRealVar("P0", "P0", 30, -100, 100);
+  RooRealVar *P1 = new RooRealVar("P1", "P1", 0.9, -100, 100);
+  Pol2 *bkgdPol2Function =
+      new Pol2("bkgdPol2Function", "bkgdPol2Function", *variable, *P0,
+                  *P1);
+  fListOfFunctions->AddAt(bkgdPol2Function, kPol2);
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 }
 void JpsiFitFunctions::SetTails(std::vector<double> vectorTails) {

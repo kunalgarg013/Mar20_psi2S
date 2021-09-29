@@ -55,7 +55,7 @@ void ratio_2s_jpsi()
     Double_t rapRanges[][2] = {{-4, -2.5}};
     int numberOfRapRanges = sizeof(rapRanges) / sizeof(rapRanges[0]);
 
-    Double_t centRanges[][2] = {{0,10}, {10,20}, {20,40}, {40,60},{60, 90}, {0,90}}; //Centrality Differential
+    Double_t centRanges[][2] = {{0,20}, {20,40}, {40,60},{60, 90}, {0,90}}; //Centrality Differential
     // Double_t centRanges[][2] = {{60, 90}}; //Centrality Differential
     int numberOfCentRanges = sizeof(centRanges) / sizeof(centRanges[0]);
 
@@ -64,7 +64,7 @@ void ratio_2s_jpsi()
     //---------------------------------------------------------//
 
     //------------------Fit configurations---------------------//
-    Int_t arrayOfBkgdFunctions[] = {kPol2OverPol3, kVWG2, kExpoPol2};
+    Int_t arrayOfBkgdFunctions[] = {kExpoPol2, kDoubleExpo, kVWG2};
     int numberOfBkgdFunctions = sizeof(arrayOfBkgdFunctions) / sizeof(arrayOfBkgdFunctions[0]);
 
     Int_t arrayOfSigFunctions[] = {kCB21S, kNA601S};
@@ -140,24 +140,23 @@ void ratio_2s_jpsi()
     }
 
     //0-90 Eff Jpsi = 0.10088                psi(2s)= 0.1312
-    // hRatio[5]->Scale(BR_JPsi/BR_Psi2S);
-    hRatio[5]->Scale(0.10088/0.1312);
+    hRatio[5]->Scale(BR_JPsi/BR_Psi2S);
+    // hRatio[4]->Scale(0.10088/0.1312);
 
-    for(Int_t i=0; i<5;i++)
+    for(Int_t i=0; i<4;i++)
     {
-        hRatio[i]->Scale(hEffJPsi->GetBinContent(i+1)/hEffPsi2S->GetBinContent(i+1));
-        // hRatio[i]-> Scale(BR_JPsi/BR_Psi2S);
+        // hRatio[i]->Scale(hEffJPsi->GetBinContent(i+1)/hEffPsi2S->GetBinContent(i+1));
+        hRatio[i]-> Scale(BR_JPsi/BR_Psi2S);
     }
 
 
-    TFile* fSave = new TFile("Ratio_2s_Jpsi_13April2021.root", "RECREATE");
+    TFile* fSave = new TFile("Ratio_2s_Jpsi_23Sep21.root", "RECREATE");
     fSave->cd();
     hRatio[0]->Write();
     hRatio[1]->Write();
     hRatio[2]->Write();
     hRatio[3]->Write();
     hRatio[4]->Write();
-    hRatio[5]->Write();
     fSave->Close();
 
 

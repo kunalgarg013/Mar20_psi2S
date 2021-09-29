@@ -11,18 +11,20 @@ void SetFitResults(TH3F *histoFitResults, TString rangeName, TString testName, s
 Double_t rapRanges[][2] = {{-4, -2.5}};
 int numberOfRapRanges = sizeof(rapRanges) / sizeof(rapRanges[0]);
 
-// Double_t centRanges[][2] = {{0,90}, {0,10}, {10,20}, {20,40}, {40,60},{60, 90}}; //Centrality Differential
-Double_t centRanges[][2] = {{0, 90}};   //Centrality integrated
+Double_t centRanges[][2] = {{0,90}, /*{0,20},*/ {20,40}, {40,60},{60, 90}}; //Centrality Differential
+// Double_t centRanges[][2] = {{0,90}, {0,20}, {20,40}, {40,60},{60, 90}}; //Centrality Differential
+// Double_t centRanges[][2] = {{0, 20}};   //Centrality integrated
 int numberOfCentRanges = sizeof(centRanges) / sizeof(centRanges[0]);
 
-Double_t ptRanges[][2] = {{0,12}, {0,2}, {2,3}, {3,4}, {4,6}, {6,12}}; // pT differential
-// Double_t ptRanges[][2] = {{0,12}};         //No mixing integrated pT
+// Double_t ptRanges[][2] = {{0,2}, {2,4}, {4,6}, {6,8}, {8,12}}; // pT differential
+Double_t ptRanges[][2] = {{0,12}};         //No mixing integrated pT
+// Double_t ptRanges[][2] = {{0,2}};         //No mixing integrated pT
 int numberOfPtRanges = sizeof(ptRanges) / sizeof(ptRanges[0]);
 //---------------------------------------------------------//
 
 //------------------Fit configurations---------------------//
-// Int_t arrayOfBkgdFunctions[] = {kDoubleExpo, kExpoPol2};
-Int_t arrayOfBkgdFunctions[] = {kVWG2, kPol2OverPol3};
+Int_t arrayOfBkgdFunctions[] = {kExpoPol2, kDoubleExpo, kVWG2};
+// Int_t arrayOfBkgdFunctions[] = {kVWG2, kPol2OverPol3};
 int numberOfBkgdFunctions = sizeof(arrayOfBkgdFunctions) / sizeof(arrayOfBkgdFunctions[0]);
 
 Int_t arrayOfSigFunctions[] = {kCB21S, kNA601S};
@@ -40,9 +42,9 @@ int numberOfFitRanges = sizeof(arrayOfFitRanges) / sizeof(arrayOfFitRanges[0]);
 
 void FitAndStore()
 {
-  TFile *inputFile = new TFile("./signalhistos_cent_pt.root");
-  // TFile *inputFile = new TFile("./subtracted_pT_diff.root");
-  // TFile *inputFile = new TFile("./subtracted_cent_diff.root");
+  // TFile *inputFile = new TFile("./signalHistos_CMUL_combined.root");
+  // TFile *inputFile = new TFile("./subtracted_pT.root");
+  TFile *inputFile = new TFile("./Subtracted_oqr.root");
 
   TH3F *histoFitResults = GetFitResultsHisto(kTRUE, "histoFitResults");
 
@@ -52,9 +54,9 @@ void FitAndStore()
     {
       for (int iPtBin = 0; iPtBin < numberOfPtRanges; iPtBin++)
       {
-        TH1D *histoInvmass = ((TH1D *)inputFile->Get(Form("SignalHisto_Cent_%gto%g_pT_%gto%g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1])));
+        // TH1D *histoInvmass = ((TH1D *)inputFile->Get(Form("SignalHisto_Cent_%gto%g_pT_%gto%g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1])));
         // TH1D *histoInvmass = ((TH1D *)inputFile->Get(Form("pT_%gto%g",ptRanges[iPtBin][0], ptRanges[iPtBin][1])));    //pT Mixed event subtracted
-        // TH1D *histoInvmass = ((TH1D *)inputFile->Get(Form("Cent_%gto%g",centRanges[iCentBin][0], centRanges[iCentBin][1])));    //Cent Mixed event subtracted
+        TH1D *histoInvmass = ((TH1D *)inputFile->Get(Form("Cent_%gto%g",centRanges[iCentBin][0], centRanges[iCentBin][1])));    //Cent Mixed event subtracted
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++//
         //Rebining: Don't rebin in the FitOneHisto.C to avoid sequential rebinning
         histoInvmass->Rebin(2);
@@ -88,7 +90,7 @@ void FitAndStore()
                   vectorOfTests.push_back(testName);
 
                   std::vector<double> vectorResults, vectorResultsErr;
-                  FitOneHisto(Form("%s/%s", plotsPath.Data(), testName.Data()), histoInvmass, arrayOfSigFunctions[iSig], arrayOfPsi2sWidth[iPsi2sWidth], arrayOfTailsSets[iTails], arrayOfBkgdFunctions[iBkgd], arrayOfFitRanges[iFitRange][0], arrayOfFitRanges[iFitRange][1] ,centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1], rapRanges[iRapBin][0], rapRanges[iRapBin][1], kFALSE, vectorResults, vectorResultsErr);
+                  FitOneHisto(Form("%s/%s", plotsPath.Data(), testName.Data()), histoInvmass, arrayOfSigFunctions[iSig], arrayOfPsi2sWidth[iPsi2sWidth], arrayOfTailsSets[iTails], arrayOfBkgdFunctions[iBkgd], arrayOfFitRanges[iFitRange][0], arrayOfFitRanges[iFitRange][1] ,centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1], rapRanges[iRapBin][0], rapRanges[iRapBin][1], kTRUE, vectorResults, vectorResultsErr);
 
                   SetFitResults(histoFitResults, rangeName, testName, vectorResults, vectorResultsErr);
                 }

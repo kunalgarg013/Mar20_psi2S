@@ -34,7 +34,8 @@ enum enumFunctions
   kPol2OverPol3,
   kExpo,
   kDoubleExpo,
-  kExpoPol2
+  kExpoPol2,
+  kPol2
 };
 enum FitResultVariables
 {
@@ -59,7 +60,7 @@ TString arrayFitVariableAxisTitles[] =  {"N_{J/#psi}",  "N_{#psi(2s)}", "M_{J/#p
 Bool_t   arrayFitVariableIsQuantity[] = {kTRUE,         kTRUE,           kTRUE,      kTRUE,       kFALSE,       kFALSE,       kFALSE};
 int numberOfFitVariables = sizeof(arrayFitVariableNames) / sizeof(arrayFitVariableNames[0]);
 
-TString arrayFunctionNames[] = {"CB2", "NA60", "CB2", "NA60", "CB2", "NA60", "VWG", "VWG2", "Pol1ToPol2", "Pol2ToPol3", "expo", "2*expo", "expo*Pol2"};
+TString arrayFunctionNames[] = {"CB2", "NA60", "CB2", "NA60", "CB2", "NA60", "VWG", "VWG2", "Pol1ToPol2", "Pol2ToPol3", "expo", "2*expo", "expo*Pol2", "Pol2"};
 
 const TString arrayTailsNames[] = {"Data", "MC-GEANT3", "MC-GEANT4"};
 std::vector<double> GetTails(Int_t fSig = kCB21S, Int_t fTailsSet = kMCGeant3, Double_t ptMin = 0, Double_t ptMax = 12, Double_t rapMin = -4, Double_t rapMax = -2.5)
@@ -85,6 +86,13 @@ std::vector<double> GetTails(Int_t fSig = kCB21S, Int_t fTailsSet = kMCGeant3, D
       {"MC-GEANT3_CB2_Rap2.5to4_Pt6to12", {0.948306, 3.93725, 2.26093, 2.97546}},
       {"MC-GEANT3_CB2_Rap2.5to4_Pt0.3to12", {0.948306, 3.93725, 2.26093, 2.97546}},
       {"MC-GEANT3_CB2_Rap2.5to4_Pt0to12", {0.948306, 3.93725, 2.26093, 2.97546}},
+
+
+
+      {"MC-GEANT3_CB2_Rap2.5to4_Pt2to4", {0.948306, 3.93725, 2.26093, 2.97546}},
+      {"MC-GEANT3_CB2_Rap2.5to4_Pt6to8", {0.948306, 3.93725, 2.26093, 2.97546}},
+      {"MC-GEANT3_CB2_Rap2.5to4_Pt8to12", {0.948306, 3.93725, 2.26093, 2.97546}},
+
       //Data-CB2
       {"Data_CB2_Rap2.5to4_Pt0.3to2", {0.890, 3.043, 8.735, 15.323}},
       {"Data_CB2_Rap2.5to4_Pt0to2", {0.890, 3.043, 8.735, 15.323}},
@@ -94,6 +102,11 @@ std::vector<double> GetTails(Int_t fSig = kCB21S, Int_t fTailsSet = kMCGeant3, D
       {"Data_CB2_Rap2.5to4_Pt6to12", {0.890, 3.043, 8.735, 15.323}},
       {"Data_CB2_Rap2.5to4_Pt0.3to12", {0.890, 3.043, 8.735, 15.323}},
       {"Data_CB2_Rap2.5to4_Pt0to12", {0.890, 3.043, 8.735, 15.323}},
+
+      {"Data_CB2_Rap2.5to4_Pt2to4", {0.890, 3.043, 8.735, 15.323}},
+      {"Data_CB2_Rap2.5to4_Pt6to8", {0.890, 3.043, 8.735, 15.323}},
+      {"Data_CB2_Rap2.5to4_Pt8to12", {0.890, 3.043, 8.735, 15.323}},
+
       //Geant3-NA60
       {"MC-GEANT3_NA60_Rap2.5to4_Pt0.3to2", {-0.630315, 0.227822, 1.14006, 0.0357395, 2.36889, 0.187828, 1.22477, 0.0569524}},
       {"MC-GEANT3_NA60_Rap2.5to4_Pt0to2", {-0.630315, 0.227822, 1.14006, 0.0357395, 2.36889, 0.187828, 1.22477, 0.0569524}},
@@ -102,7 +115,12 @@ std::vector<double> GetTails(Int_t fSig = kCB21S, Int_t fTailsSet = kMCGeant3, D
       {"MC-GEANT3_NA60_Rap2.5to4_Pt4to6", {-0.630315, 0.227822, 1.14006, 0.0357395, 2.36889, 0.187828, 1.22477, 0.0569524}},
       {"MC-GEANT3_NA60_Rap2.5to4_Pt6to12", {-0.630315, 0.227822, 1.14006, 0.0357395, 2.36889, 0.187828, 1.22477, 0.0569524}},
       {"MC-GEANT3_NA60_Rap2.5to4_Pt0.3to12", {-0.630315, 0.227822, 1.14006, 0.0357395, 2.36889, 0.187828, 1.22477, 0.0569524}},
-      {"MC-GEANT3_NA60_Rap2.5to4_Pt0to12", {-0.630315, 0.227822, 1.14006, 0.0357395, 2.36889, 0.187828, 1.22477, 0.0569524}}
+      {"MC-GEANT3_NA60_Rap2.5to4_Pt0to12", {-0.630315, 0.227822, 1.14006, 0.0357395, 2.36889, 0.187828, 1.22477, 0.0569524}},
+
+      {"MC-GEANT3_NA60_Rap2.5to4_Pt2to4", {-0.630315, 0.227822, 1.14006, 0.0357395, 2.36889, 0.187828, 1.22477, 0.0569524}},
+      {"MC-GEANT3_NA60_Rap2.5to4_Pt6to8", {-0.630315, 0.227822, 1.14006, 0.0357395, 2.36889, 0.187828, 1.22477, 0.0569524}},
+      {"MC-GEANT3_NA60_Rap2.5to4_Pt8to12", {-0.630315, 0.227822, 1.14006, 0.0357395, 2.36889, 0.187828, 1.22477, 0.0569524}}
+
 
 
   };

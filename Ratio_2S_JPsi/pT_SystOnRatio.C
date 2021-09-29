@@ -4,10 +4,10 @@ void pT_SystOnRatio()
     TH1D* hRatio[6];
 
     hRatio[0]   = (TH1D*)fRatio->Get("0_2_Ratio");
-    hRatio[1]   = (TH1D*)fRatio->Get("2_3_Ratio");
-    hRatio[2]   = (TH1D*)fRatio->Get("3_4_Ratio");
-    hRatio[3]   = (TH1D*)fRatio->Get("4_6_Ratio");
-    hRatio[4]   = (TH1D*)fRatio->Get("6_12_Ratio");
+    hRatio[1]   = (TH1D*)fRatio->Get("2_4_Ratio");
+    hRatio[2]   = (TH1D*)fRatio->Get("4_6_Ratio");
+    hRatio[3]   = (TH1D*)fRatio->Get("6_8_Ratio");
+    hRatio[4]   = (TH1D*)fRatio->Get("8_12_Ratio");
     hRatio[5]   = (TH1D*)fRatio->Get("0_12_Ratio");
 
 

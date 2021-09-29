@@ -8,14 +8,13 @@ void plotRatio()
     hStat->SetMarkerStyle(4);
     hStat->SetMarkerColor(kBlue);
     hStat->SetStats(0);
-    hStat->GetYaxis()->SetTitle("#psi (2S)/ J/#psi");
-    hStat->GetXaxis()->SetTitle("d#eta/dch");
-    hStat->GetXaxis()->SetBinLabel(1, "0-10");
-    hStat->GetXaxis()->SetBinLabel(2, "10-20");
-    hStat->GetXaxis()->SetBinLabel(3, "20-40");
-    hStat->GetXaxis()->SetBinLabel(4, "40-60");
-    hStat->GetXaxis()->SetBinLabel(5, "60-90");
-    hStat->GetXaxis()->SetBinLabel(6, "0-90");
+    hStat->GetYaxis()->SetTitle("BR x #psi (2S)/ BR x J/#psi");
+    hStat->GetXaxis()->SetTitle("Centrality");
+    hStat->GetXaxis()->SetBinLabel(1, "0-20");
+    hStat->GetXaxis()->SetBinLabel(2, "20-40");
+    hStat->GetXaxis()->SetBinLabel(3, "40-60");
+    hStat->GetXaxis()->SetBinLabel(4, "60-90");
+    hStat->GetXaxis()->SetBinLabel(5, "0-90");
     hStat->GetYaxis()->SetRangeUser(0,0.03);
 
 

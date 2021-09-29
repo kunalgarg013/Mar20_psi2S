@@ -1,5 +1,6 @@
 void compare_ratio(TH1F* h1, TH1F* h2)
 {
+
     h1->SetMarkerColor(kRed);
     h1->SetMarkerStyle(3);
     h2->SetMarkerColor(kMagenta);
@@ -9,6 +10,8 @@ void compare_ratio(TH1F* h1, TH1F* h2)
     h2->SetTitle(h1->GetName());
     h2->Draw();
 
+    cout<<h2->GetNbinsX()<<endl;
+    cout<<h1->GetNbinsX()<<endl;
 
     TLine* l1 = new TLine(0, 1, 15, 1);
     l1->SetLineColor(kRed);
@@ -19,8 +22,7 @@ void compare_ratio(TH1F* h1, TH1F* h2)
 
 void compare_direct(TH1F* h1, TH1F* h2)
 {
-    // h1->Rebin(5);
-    // h2->Rebin(2);
+
 
     h1->SetMarkerColor(kRed);
     h1->SetMarkerStyle(3);
@@ -50,7 +52,8 @@ void plots_compare()
 {
     gStyle->SetOptStat(0000);
     // gStyle->SetOptTitle(0);
-    TFile* fKunal = new TFile("rAcceptance_2018.root");
+    // TFile* fKunal = new TFile("rAcceptance_2018.root");
+    TFile* fKunal = new TFile("rACC_Extended.root");
     TFile* fRoberta = new TFile("Chunlu_NormalizationFactors_LHC18qr.root");
 
     TH1F* hKBin1 = (TH1F*)fKunal->Get("Cent_0to10");
@@ -77,7 +80,7 @@ void plots_compare()
     TH1F* hRBin9 = (TH1F*)fRoberta->Get("histoRaccMix_Cent80to90;1;1");
 
 
-    compare_direct(hKBin1, hRBin1);
+   /* compare_direct(hKBin1, hRBin1);
     compare_direct(hKBin2, hRBin2);
     compare_direct(hKBin3, hRBin3);
     compare_direct(hKBin4, hRBin4);
@@ -85,7 +88,18 @@ void plots_compare()
     compare_direct(hKBin6, hRBin6);
     compare_direct(hKBin7, hRBin7);
     compare_direct(hKBin8, hRBin8);
-    compare_direct(hKBin9, hRBin9);
+    compare_direct(hKBin9, hRBin9); */
+
+    // compare_ratio(hKBin1, hRBin1);
+    /*compare_ratio(hKBin2, hRBin2);
+    compare_ratio(hKBin3, hRBin3);
+    compare_ratio(hKBin4, hRBin4);
+    compare_ratio(hKBin5, hRBin5);
+    compare_ratio(hKBin6, hRBin6);
+    compare_ratio(hKBin7, hRBin7);
+    compare_ratio(hKBin8, hRBin8);
+    compare_ratio(hKBin9, hRBin9);  */
+
 
 
 

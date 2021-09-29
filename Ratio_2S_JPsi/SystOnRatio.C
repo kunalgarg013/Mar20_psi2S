@@ -24,21 +24,20 @@
 
 void SystOnRatio()
 {
-    TFile* fRatio = new TFile("Ratio_2s_Jpsi.root");
+    TFile* fRatio = new TFile("Ratio_2s_Jpsi_23Sep21.root");
     TH1D* hRatio[6];
 
-    hRatio[0]   = (TH1D*)fRatio->Get("0_10_Ratio");
-    hRatio[1]   = (TH1D*)fRatio->Get("10_20_Ratio");
-    hRatio[2]   = (TH1D*)fRatio->Get("20_40_Ratio");
-    hRatio[3]   = (TH1D*)fRatio->Get("40_60_Ratio");
-    hRatio[4]   = (TH1D*)fRatio->Get("60_90_Ratio");
-    hRatio[5]   = (TH1D*)fRatio->Get("0_90_Ratio");
+    hRatio[0]   = (TH1D*)fRatio->Get("0_20_Ratio");
+    hRatio[1]   = (TH1D*)fRatio->Get("20_40_Ratio");
+    hRatio[2]   = (TH1D*)fRatio->Get("40_60_Ratio");
+    hRatio[3]   = (TH1D*)fRatio->Get("60_90_Ratio");
+    hRatio[4]   = (TH1D*)fRatio->Get("0_90_Ratio");
 
 
     Double_t kSum[6]= {0}, kMean[6]={0};
     Int_t counter[6] = {0};
 
-    for(Int_t i = 0; i<6; i++)
+    for(Int_t i = 0; i<5; i++)
     {
         Double_t kRatio[100] = {0};
 
@@ -62,13 +61,13 @@ void SystOnRatio()
     Double_t kSyst[6]={0};
     Double_t kStat[6] ={0};
 
-    TH1D* hSystOnRatio = new TH1D("SystonRatio", "SystOnRatio", 6, 0, 6);
-    TH1D* hStatOnRatio = new TH1D("StatonRatio", "StatOnRatio", 6, 0, 6);
-    Double_t centRanges[][2] = {{0,10}, {10,20}, {20,40}, {40,60},{60, 90}, {0,90}}; //Centrality Differential
+    TH1D* hSystOnRatio = new TH1D("SystonRatio", "SystOnRatio", 5, 0, 5);
+    TH1D* hStatOnRatio = new TH1D("StatonRatio", "StatOnRatio", 5, 0, 5);
+    Double_t centRanges[][2] = {{0,20}, {20,40}, {40,60},{60, 90}, {0,90}}; //Centrality Differential
     TString rangeName;
     std::vector<TString> rangeOfTests;
 
-    for(Int_t p=0; p<6;p++)
+    for(Int_t p=0; p<5;p++)
     {
         Double_t kInStat[100]={0};
         Double_t kDiff[100]={0};

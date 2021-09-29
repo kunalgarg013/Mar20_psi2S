@@ -11,18 +11,18 @@ void GetFitResults(TH3F *histoFitResults, TString rangeName, TString testName, s
 Double_t rapRanges[][2] = {{-4, -2.5}};
 int numberOfRapRanges = sizeof(rapRanges) / sizeof(rapRanges[0]);
 
-Double_t centRanges[][2] = {{0,90}, {0,10}, {10,20}, {20,40}, {40,60},{60, 90}}; //Centrality Differential
+Double_t centRanges[][2] = {{0,90}, {0,20}, {20,40}, {40,60},{60, 90}}; //Centrality Differential
 // Double_t centRanges[][2] = {{0, 90}};   //Centrality integrated
 int numberOfCentRanges = sizeof(centRanges) / sizeof(centRanges[0]);
 
-// Double_t ptRanges[][2] = {{0,12}, {0,2}, {2,3}, {3,4}, {4,6}, {6,12}}; // pT differential
+// Double_t ptRanges[][2] = {{0,12}, {0,2}, {2,4}, {4,6}, {6,8}, {8,12}}; // pT differential
 Double_t ptRanges[][2] = {{0,12}};         //No mixing integrated pT
 int numberOfPtRanges = sizeof(ptRanges) / sizeof(ptRanges[0]);
 //---------------------------------------------------------//
 
 //------------------Fit configurations---------------------//
-Int_t arrayOfBkgdFunctions[] = {kPol2OverPol3, kVWG2, kExpoPol2};
-// Int_t arrayOfBkgdFunctions[] = {kPol2OverPol3, kVWG2, kDoubleExpo, kExpoPol2};
+Int_t arrayOfBkgdFunctions[] = {kExpoPol2, kDoubleExpo, kVWG2};
+/*, kVWG2, kPol2OverPol3};*/
 // Int_t arrayOfBkgdFunctions[] = {kDoubleExpo, kExpoPol2};
 // Int_t arrayOfBkgdFunctions[] = {kPol2OverPol3, kVWG2};
 int numberOfBkgdFunctions = sizeof(arrayOfBkgdFunctions) / sizeof(arrayOfBkgdFunctions[0]);
@@ -190,7 +190,7 @@ void DrawAndRMSForRange(TH3F *histoFitResultsAll, TString rangeName, TString ran
 
     for (int iTest = 1; iTest <= numberOfTests; iTest++)
     {
-      if((histoFitResults[kChi2PerTest]->GetBinContent(iTest) > 2) || (histoFitResults[kCovQuality]->GetBinContent(iTest) != 3) || (histoFitResults[kFitStatus]->GetBinContent(iTest) != 0) ) continue;
+      if((histoFitResults[kChi2PerTest]->GetBinContent(iTest) > 2.5) || (histoFitResults[kCovQuality]->GetBinContent(iTest) != 3) || (histoFitResults[kFitStatus]->GetBinContent(iTest) != 0) ) continue;
 
       Double_t testWeight = 1;
       TString strTestLabel = histoFitResults[iVariable]->GetXaxis()->GetBinLabel(iTest);

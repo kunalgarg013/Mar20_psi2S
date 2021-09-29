@@ -32,8 +32,8 @@ void pt_ratio_jpsi()
     TFile* fJPsiEff         = new TFile("Eff_JPsi_pT.root");
     TFile* fPsi2SEff        = new TFile("Eff_Psi2s_pT.root");
 
-    TH1D* hEffJPsi          = (TH1D*)fJPsiEff->Get("EffVspT_Psi2S");
-    TH1D* hEffPsi2S         = (TH1D*)fPsi2SEff->Get("EffVspT_Psi2S");
+    // TH1D* hEffJPsi          = (TH1D*)fJPsiEff->Get("EffVspT_Psi2S");
+    // TH1D* hEffPsi2S         = (TH1D*)fPsi2SEff->Get("EffVspT_Psi2S");
 
 
 
@@ -58,13 +58,13 @@ void pt_ratio_jpsi()
     Double_t centRanges[][2] = {{0, 90}}; //Centrality Differential
     int numberOfCentRanges = sizeof(centRanges) / sizeof(centRanges[0]);
 
-    Double_t ptRanges[][2] = {{0,2}, {2,3}, {3,4}, {4,6}, {6,12}, {0,12}}; // pT differential
+    Double_t ptRanges[][2] = {{0,2}, {2,4}, {4,6}, {6,8}, {8,12}, {0,12}}; // pT differential
     // Double_t ptRanges[][2] = {{0,12}};         //No mixing integrated pT
     int numberOfPtRanges = sizeof(ptRanges) / sizeof(ptRanges[0]);
     //---------------------------------------------------------//
 
     //------------------Fit configurations---------------------//
-    Int_t arrayOfBkgdFunctions[] = {kPol2OverPol3, kVWG2, kDoubleExpo, kExpoPol2};
+    Int_t arrayOfBkgdFunctions[] = {kDoubleExpo, kExpoPol2, kVWG2, kPol2};
     int numberOfBkgdFunctions = sizeof(arrayOfBkgdFunctions) / sizeof(arrayOfBkgdFunctions[0]);
 
     Int_t arrayOfSigFunctions[] = {kCB21S, kNA601S};
@@ -140,13 +140,13 @@ void pt_ratio_jpsi()
     }
 
     //0-90 Eff Jpsi = 0.10088                psi(2s)= 0.1312
-    // hRatio[5]->Scale(BR_JPsi/BR_Psi2S);
-    hRatio[5]->Scale(0.10088/0.1312);
+    hRatio[5]->Scale(BR_JPsi/BR_Psi2S);
+    // hRatio[5]->Scale(0.10088/0.1312);
 
     for(Int_t i=0; i<5;i++)
     {
-        hRatio[i]->Scale(hEffJPsi->GetBinContent(i+1)/hEffPsi2S->GetBinContent(i+1));
-        // hRatio[i]-> Scale(BR_JPsi/BR_Psi2S);
+        // hRatio[i]->Scale(hEffJPsi->GetBinContent(i+1)/hEffPsi2S->GetBinContent(i+1));
+        hRatio[i]-> Scale(BR_JPsi/BR_Psi2S);
     }
 
 

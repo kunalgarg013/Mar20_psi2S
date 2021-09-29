@@ -10,12 +10,14 @@ void pT_plotRatio()
     hStat->SetStats(0);
     hStat->GetYaxis()->SetTitle("#psi (2S)/ J/#psi");
     hStat->GetXaxis()->SetTitle("dp_{T}");
-    hStat->GetXaxis()->SetBinLabel(1, "0.3-2");
-    hStat->GetXaxis()->SetBinLabel(2, "2-3");
-    hStat->GetXaxis()->SetBinLabel(3, "3-4");
-    hStat->GetXaxis()->SetBinLabel(4, "4-6");
-    hStat->GetXaxis()->SetBinLabel(5, "6-12");
-    hStat->GetXaxis()->SetBinLabel(6, "0.3-12");
+    // hStat->GetXaxis()->SetBinLabel(1, "0.3-2");
+    hStat->GetXaxis()->SetBinLabel(1, "0-2");
+    hStat->GetXaxis()->SetBinLabel(2, "2-4");
+    hStat->GetXaxis()->SetBinLabel(3, "4-6");
+    hStat->GetXaxis()->SetBinLabel(4, "6-8");
+    hStat->GetXaxis()->SetBinLabel(5, "8-12");
+    // hStat->GetXaxis()->SetBinLabel(6, "0.3-12");
+    hStat->GetXaxis()->SetBinLabel(6, "0-12");
     hStat->GetYaxis()->SetRangeUser(0,0.03);
 
 
