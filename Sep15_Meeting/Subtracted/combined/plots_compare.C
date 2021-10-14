@@ -10,6 +10,8 @@ void compare_ratio(TH1F* h1, TH1F* h2)
     h2->Divide(h1);
     h2->GetYaxis()->SetRangeUser(0.75,1.25);
     h2->SetTitle(h1->GetName());
+     h2->GetXaxis()->SetTitle("M_{#mu#mu}");
+    h2->GetYaxis()->SetTitle("Ratio");
     h2->Draw();
 
 

@@ -11,7 +11,8 @@ void SetFitResults(TH3F *histoFitResults, TString rangeName, TString testName, s
 Double_t rapRanges[][2] = {{-4, -2.5}};
 int numberOfRapRanges = sizeof(rapRanges) / sizeof(rapRanges[0]);
 
-Double_t centRanges[][2] = {{0,90}, /*{0,20},*/ {20,40}, {40,60},{60, 90}}; //Centrality Differential
+// Double_t centRanges[][2] = {{0,90}, {0,20}, {20,40}, {40,60},{60, 90}}; //Centrality Differential
+Double_t centRanges[][2] = {{0,90}, {20,40}, {40,60},{60, 90}}; //Centrality Differential
 // Double_t centRanges[][2] = {{0,90}, {0,20}, {20,40}, {40,60},{60, 90}}; //Centrality Differential
 // Double_t centRanges[][2] = {{0, 20}};   //Centrality integrated
 int numberOfCentRanges = sizeof(centRanges) / sizeof(centRanges[0]);
@@ -23,7 +24,7 @@ int numberOfPtRanges = sizeof(ptRanges) / sizeof(ptRanges[0]);
 //---------------------------------------------------------//
 
 //------------------Fit configurations---------------------//
-Int_t arrayOfBkgdFunctions[] = {kExpoPol2, kDoubleExpo, kVWG2};
+Int_t arrayOfBkgdFunctions[] = {kCebPol2, kExpoPol2, kDoubleExpo};
 // Int_t arrayOfBkgdFunctions[] = {kVWG2, kPol2OverPol3};
 int numberOfBkgdFunctions = sizeof(arrayOfBkgdFunctions) / sizeof(arrayOfBkgdFunctions[0]);
 
@@ -36,7 +37,7 @@ int numberOfTailsSets = sizeof(arrayOfTailsSets) / sizeof(arrayOfTailsSets[0]);
 Double_t arrayOfPsi2sWidth[] = {1.01,1.05};
 int numberOfPsi2sWidth = sizeof(arrayOfPsi2sWidth) / sizeof(arrayOfPsi2sWidth[0]);
 
-Double_t arrayOfFitRanges[][2] = {{2.2, 4.5},{2.4,4.7} };
+Double_t arrayOfFitRanges[][2] = {{2.3, 4.6},{2.4,4.7}, {2.2, 4.8}};
 int numberOfFitRanges = sizeof(arrayOfFitRanges) / sizeof(arrayOfFitRanges[0]);
 //---------------------------------------------------------//
 

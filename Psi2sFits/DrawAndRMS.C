@@ -21,7 +21,7 @@ int numberOfPtRanges = sizeof(ptRanges) / sizeof(ptRanges[0]);
 //---------------------------------------------------------//
 
 //------------------Fit configurations---------------------//
-Int_t arrayOfBkgdFunctions[] = {kExpoPol2, kDoubleExpo, kVWG2};
+Int_t arrayOfBkgdFunctions[] = {kCebPol2, kExpoPol2, kDoubleExpo};
 /*, kVWG2, kPol2OverPol3};*/
 // Int_t arrayOfBkgdFunctions[] = {kDoubleExpo, kExpoPol2};
 // Int_t arrayOfBkgdFunctions[] = {kPol2OverPol3, kVWG2};
@@ -36,7 +36,8 @@ int numberOfTailsSets = sizeof(arrayOfTailsSets) / sizeof(arrayOfTailsSets[0]);
 Double_t arrayOfPsi2sWidth[] = {1.01,1.05};
 int numberOfPsi2sWidth = sizeof(arrayOfPsi2sWidth) / sizeof(arrayOfPsi2sWidth[0]);
 
-Double_t arrayOfFitRanges[][2] = {{2.2, 4.5},{2.4,4.7} };
+// Double_t arrayOfFitRanges[][2] = {{2.2, 4.5},{2.4,4.7} };
+Double_t arrayOfFitRanges[][2] = {{2.3, 4.6},{2.4,4.7}, {2.2, 4.8}};
 int numberOfFitRanges = sizeof(arrayOfFitRanges) / sizeof(arrayOfFitRanges[0]);
 //---------------------------------------------------------//
 
@@ -46,6 +47,7 @@ void DrawAndRMS()
 {
 
   TH3F *histoFitResults = GetFitResultsHisto(kFALSE, "histoFitResults");
+
 
   for (int iCentBin = 0; iCentBin < numberOfCentRanges; iCentBin++)
   {
@@ -61,7 +63,7 @@ void DrawAndRMS()
         rangeNameForLegend.Form("%g-%g %%, %g < #it{p}_{T} < %g , %g < #it{y} < %g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1], rapRanges[iRapBin][0], rapRanges[iRapBin][1]);
 
         TString plotsPath;
-        plotsPath.Form("Systematics/Cent-%gto%g/Pt-%gto%g/Rap-%gto%g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1], rapRanges[iRapBin][0], rapRanges[iRapBin][1]);
+        plotsPath.Form("Systematics_test/Cent-%gto%g/Pt-%gto%g/Rap-%gto%g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1], rapRanges[iRapBin][0], rapRanges[iRapBin][1]);
 
         gSystem->Exec(Form("mkdir -p %s", plotsPath.Data()));
 
@@ -180,8 +182,8 @@ void DrawAndRMSForRange(TH3F *histoFitResultsAll, TString rangeName, TString ran
   //Plot per test, per fit variable
   for (int iVariable = 0; iVariable < numberOfFitVariables; iVariable++)
   {
-    TCanvas *canFitResult = new TCanvas(Form("canFitResult_%s_%s", rangeName.Data(), arrayFitVariableNames[iVariable].Data()), "", 1200, 500);
-    canFitResult->SetBottomMargin(0.25);
+    TCanvas *canFitResult = new TCanvas(Form("canFitResult_%s_%s", rangeName.Data(), arrayFitVariableNames[iVariable].Data()), "", 1400, 800);
+    canFitResult->SetBottomMargin(0.49);
 
     Double_t variableMean = 0;
     Double_t variable_stat_err = 0;
@@ -190,7 +192,7 @@ void DrawAndRMSForRange(TH3F *histoFitResultsAll, TString rangeName, TString ran
 
     for (int iTest = 1; iTest <= numberOfTests; iTest++)
     {
-      if((histoFitResults[kChi2PerTest]->GetBinContent(iTest) > 2.5) || (histoFitResults[kCovQuality]->GetBinContent(iTest) != 3) || (histoFitResults[kFitStatus]->GetBinContent(iTest) != 0) ) continue;
+      if((histoFitResults[kChi2PerTest]->GetBinContent(iTest) > 3.) || (histoFitResults[kCovQuality]->GetBinContent(iTest) != 3) || (histoFitResults[kFitStatus]->GetBinContent(iTest) != 0) ) continue;
 
       Double_t testWeight = 1;
       TString strTestLabel = histoFitResults[iVariable]->GetXaxis()->GetBinLabel(iTest);
@@ -207,7 +209,7 @@ void DrawAndRMSForRange(TH3F *histoFitResultsAll, TString rangeName, TString ran
     for (int iTest = 1; iTest <= numberOfTests; iTest++)
     {
 
-      if((histoFitResults[kChi2PerTest]->GetBinContent(iTest) > 2) || (histoFitResults[kCovQuality]->GetBinContent(iTest) != 3) || (histoFitResults[kFitStatus]->GetBinContent(iTest) != 0) ) continue;
+      if((histoFitResults[kChi2PerTest]->GetBinContent(iTest) > 3.) || (histoFitResults[kCovQuality]->GetBinContent(iTest) != 3) || (histoFitResults[kFitStatus]->GetBinContent(iTest) != 0) ) continue;
 
       Double_t testWeight = 1;
       TString strTestLabel = histoFitResults[iVariable]->GetXaxis()->GetBinLabel(iTest);
@@ -225,7 +227,7 @@ void DrawAndRMSForRange(TH3F *histoFitResultsAll, TString rangeName, TString ran
     histoFitResults[iVariable]->SetLineColor(kBlack);
     histoFitResults[iVariable]->GetYaxis()->SetTitle(arrayFitVariableAxisTitles[iVariable].Data());
     histoFitResults[iVariable]->GetYaxis()->SetTitleSize(0.05);
-    histoFitResults[iVariable]->GetYaxis()->SetTitleOffset(0.7);
+    histoFitResults[iVariable]->GetYaxis()->SetTitleOffset(0.9);
     histoFitResults[iVariable]->GetYaxis()->SetLabelSize(0.035);
     histoFitResults[iVariable]->Draw("p");
 
@@ -234,7 +236,7 @@ void DrawAndRMSForRange(TH3F *histoFitResultsAll, TString rangeName, TString ran
     lineAverage->SetLineWidth(1);
     lineAverage->Draw("");
 
-    TLegend *legMain = new TLegend(0.1, 0.70, 0.4, 0.84);
+    TLegend *legMain = new TLegend(0.1, 0.75, 0.4, 0.89);
     legMain->SetFillStyle(0);
     legMain->SetLineColorAlpha(0, 0);
     legMain->SetTextColor(kBlack);
