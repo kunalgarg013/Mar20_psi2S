@@ -11,8 +11,8 @@ void SetFitResults(TH3F *histoFitResults, TString rangeName, TString testName, s
 Double_t rapRanges[][2] = {{-4, -2.5}};
 int numberOfRapRanges = sizeof(rapRanges) / sizeof(rapRanges[0]);
 
-// Double_t centRanges[][2] = {{0,90}, {0,20}, {20,40}, {40,60},{60, 90}}; //Centrality Differential
-Double_t centRanges[][2] = {{0,90}, {20,40}, {40,60},{60, 90}}; //Centrality Differential
+Double_t centRanges[][2] = {{0,90}, {0,20}, {20,40}, {40,60},{60, 90}}; //Centrality Differential
+// Double_t centRanges[][2] = {{0,90}, {20,40}, {40,60},{60, 90}}; //Centrality Differential
 // Double_t centRanges[][2] = {{0,90}, {0,20}, {20,40}, {40,60},{60, 90}}; //Centrality Differential
 // Double_t centRanges[][2] = {{0, 20}};   //Centrality integrated
 int numberOfCentRanges = sizeof(centRanges) / sizeof(centRanges[0]);
@@ -24,8 +24,8 @@ int numberOfPtRanges = sizeof(ptRanges) / sizeof(ptRanges[0]);
 //---------------------------------------------------------//
 
 //------------------Fit configurations---------------------//
-Int_t arrayOfBkgdFunctions[] = {kCebPol2, kExpoPol2, kDoubleExpo};
-// Int_t arrayOfBkgdFunctions[] = {kVWG2, kPol2OverPol3};
+// Int_t arrayOfBkgdFunctions[] = {kCebPol2, kExpoPol2, kDoubleExpo};
+Int_t arrayOfBkgdFunctions[] = {kVWG2, kPol2OverPol3};
 int numberOfBkgdFunctions = sizeof(arrayOfBkgdFunctions) / sizeof(arrayOfBkgdFunctions[0]);
 
 Int_t arrayOfSigFunctions[] = {kCB21S, kNA601S};
@@ -37,15 +37,16 @@ int numberOfTailsSets = sizeof(arrayOfTailsSets) / sizeof(arrayOfTailsSets[0]);
 Double_t arrayOfPsi2sWidth[] = {1.01,1.05};
 int numberOfPsi2sWidth = sizeof(arrayOfPsi2sWidth) / sizeof(arrayOfPsi2sWidth[0]);
 
-Double_t arrayOfFitRanges[][2] = {{2.3, 4.6},{2.4,4.7}, {2.2, 4.8}};
+// Double_t arrayOfFitRanges[][2] = {{2.3, 4.6},{2.4,4.7}, {2.2, 4.8}};
+Double_t arrayOfFitRanges[][2] = {{2.1, 5.},{2.2,4.5}};
 int numberOfFitRanges = sizeof(arrayOfFitRanges) / sizeof(arrayOfFitRanges[0]);
 //---------------------------------------------------------//
 
 void FitAndStore()
 {
-  // TFile *inputFile = new TFile("./signalHistos_CMUL_combined.root");
+  TFile *inputFile = new TFile("./signalHistos_CMUL_combined.root");
   // TFile *inputFile = new TFile("./subtracted_pT.root");
-  TFile *inputFile = new TFile("./Subtracted_oqr.root");
+  // TFile *inputFile = new TFile("./Subtracted_oqr.root");
 
   TH3F *histoFitResults = GetFitResultsHisto(kTRUE, "histoFitResults");
 
@@ -55,9 +56,9 @@ void FitAndStore()
     {
       for (int iPtBin = 0; iPtBin < numberOfPtRanges; iPtBin++)
       {
-        // TH1D *histoInvmass = ((TH1D *)inputFile->Get(Form("SignalHisto_Cent_%gto%g_pT_%gto%g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1])));
+        TH1D *histoInvmass = ((TH1D *)inputFile->Get(Form("SignalHisto_Cent_%gto%g_pT_%gto%g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1])));
         // TH1D *histoInvmass = ((TH1D *)inputFile->Get(Form("pT_%gto%g",ptRanges[iPtBin][0], ptRanges[iPtBin][1])));    //pT Mixed event subtracted
-        TH1D *histoInvmass = ((TH1D *)inputFile->Get(Form("Cent_%gto%g",centRanges[iCentBin][0], centRanges[iCentBin][1])));    //Cent Mixed event subtracted
+        // TH1D *histoInvmass = ((TH1D *)inputFile->Get(Form("Cent_%gto%g",centRanges[iCentBin][0], centRanges[iCentBin][1])));    //Cent Mixed event subtracted
         //++++++++++++++++++++++++++++++++++++++++++++++++++++++//
         //Rebining: Don't rebin in the FitOneHisto.C to avoid sequential rebinning
         histoInvmass->Rebin(2);
@@ -67,7 +68,7 @@ void FitAndStore()
         rangeName.Form("Cent_%g-%gAndPt_%g-%gAndRap_%gto%g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1], rapRanges[iRapBin][0], rapRanges[iRapBin][1]);
 
         TString plotsPath;
-        plotsPath.Form("FitPlots/Cent-%gto%g/Pt-%gto%g/Rap-%gto%g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1], rapRanges[iRapBin][0], rapRanges[iRapBin][1]);
+        plotsPath.Form("FitPlots_Direct/Cent-%gto%g/Pt-%gto%g/Rap-%gto%g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1], rapRanges[iRapBin][0], rapRanges[iRapBin][1]);
 
         gSystem->Exec(Form("mkdir -p %s", plotsPath.Data()));
 
