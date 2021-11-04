@@ -41,7 +41,7 @@ Bool_t SetSparseRange(THnSparse* hSparse,Int_t ivar, Double_t varMin, Double_t v
 }
 
 
-void subMixing()
+void subMixing_pT()
 {
     const Int_t cLow[]     = {0,  0,  20, 40, 60};
     const Int_t cHigh[]    = {90, 20, 40, 60, 90};
@@ -141,25 +141,23 @@ void subMixing()
 
     TFile *f1 = new TFile("../../CMLL/CMLL_oqr_AnalysisResults.root");//ok
     TObjArray *arr =(TObjArray*)f1->Get("ListEvent");
+    THnSparse* hSparseDimuon[100];
 
-    THnSparse* hSparseDimuon     = (THnSparse*)arr->FindObject("fSparseDimuonOpp");
     THnSparse* hSparseDimuonNeg  = (THnSparse*)arr->FindObject("fSparseDimuonNeg");
     THnSparse* hSparseDimuonPlus = (THnSparse*)arr->FindObject("fSparseDimuonPlus");
 
-    if (!hSparseDimuon) {
-    printf("cannot open find THnSparse");
-    return;
-    }
+
 
     TH1F *hSig[5];
 
     TFile* fTest = new TFile("subtracted_pT.root", "RECREATE");
     for(Int_t i=0; i<5; i++)
     {
-
-      SetSparseRange(hSparseDimuon, 2, -4., -2.5 -1e-6, "");
-      SetSparseRange(hSparseDimuon, 3, 0, 90 -1e-6, "");
-      SetSparseRange(hSparseDimuon, 0, pTLow[i], pTHigh[i] -1e-6, "");
+      hSparseDimuon[i]     = (THnSparse*)arr->FindObject("fSparseDimuonOpp");
+      SetSparseRange(hSparseDimuon[i], 2, -4., -2.5 -1e-6, "");
+      SetSparseRange(hSparseDimuon[i], 3, 0, 90 -1e-6, "");
+      SetSparseRange(hSparseDimuon[i], 1, 2, 15 -1e-6, "");
+      SetSparseRange(hSparseDimuon[i], 0, pTLow[i], pTHigh[i] -1e-6, "");
 
 
 
@@ -168,7 +166,7 @@ void subMixing()
         // hSparseDimuon->GetAxis(1)->SetRange(MassMin, MassMax); //Centrality Range
         // hSparseDimuon->GetAxis(1)->SetBit(TAxis::kAxisRange);
 
-        hSig[i]=(TH1F*)hSparseDimuon->Projection(1);//projection x
+        hSig[i]=(TH1F*)hSparseDimuon[i]->Projection(1);//projection x
 
 
         hSig[i]->SetMarkerStyle(2);
@@ -191,10 +189,10 @@ void subMixing()
         hpTMixed[i]->SetMarkerColor(kGreen);
 
 
-
+        cout<<hpTMixed[i]->GetName()<<endl;
         hSig[i]->Add((TH1F*)hpTMixed[i], -1);
         hSig[i]->SetTitle(Form("pT_%dto%d", (Int_t)pTLow[i], (Int_t)pTHigh[i]));
-        hSig[i]->GetXaxis()->SetRangeUser(2., 15);
+        // hSig[i]->GetXaxis()->SetRangeUser(2., 15);
 
         fTest->cd();
         hSig[i]->SetName(Form("pT_%dto%d", (Int_t)pTLow[i], (Int_t)pTHigh[i]));

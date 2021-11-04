@@ -6,7 +6,7 @@ The fit method is based on RooFit. The signal and background functions are sent 
 #include "RooFitClasses/JpsiFitFunctions.h"
 #include "RooFitClasses/JpsiFitFunctions.cxx"
 #include "Common.C"
-using namespace std;        
+using namespace std;
 using namespace RooFit;
 ///////////////////////////////////////////
 
@@ -81,7 +81,7 @@ void FitOneHisto(TString canvasName, TH1 *histoInvMass, int fSig, Double_t psi2s
 
   if (approxNumberOfBkgd <1000)
   {
-    approxNumberOfBkgd = 1000;
+    // approxNumberOfBkgd = 1000;
   }
 
   RooRealVar NBkgd("NBkgd", "NBkgd", approxNumberOfBkgd * 0.5, 0, approxNumberOfBkgd * 10);
@@ -157,6 +157,7 @@ void FitOneHisto(TString canvasName, TH1 *histoInvMass, int fSig, Double_t psi2s
   dimuonModel->plotOn(frame, Components(*bkgdFuncion), LineColor(TColor::GetColor(strHexMap["grey"])), LineStyle(7));
   dimuonModel->plotOn(frame, Name("dimuonModel"), LineColor(TColor::GetColor(strHexMap["blue"])), LineWidth(1));
   frame->GetYaxis()->SetTitleOffset(1.7);
+  frame->GetYaxis()->SetRangeUser(1, 5*1e6);
   frame->Draw("");
   //----------------------------------------------------------------------------------------------//
 
