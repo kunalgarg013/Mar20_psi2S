@@ -31,13 +31,14 @@ int numberOfBkgdFunctions = sizeof(arrayOfBkgdFunctions) / sizeof(arrayOfBkgdFun
 Int_t arrayOfSigFunctions[] = {kCB21S, kNA601S};
 int numberOfSigFunctions = sizeof(arrayOfSigFunctions) / sizeof(arrayOfSigFunctions[0]);
 
-Int_t arrayOfTailsSets[] = {kMCGeant3, kData13TeV};
+Int_t arrayOfTailsSets[] = {kMCGeant3/*, kData13TeV*/};
 int numberOfTailsSets = sizeof(arrayOfTailsSets) / sizeof(arrayOfTailsSets[0]);
 
 Double_t arrayOfPsi2sWidth[] = {1.01,1.05};
 int numberOfPsi2sWidth = sizeof(arrayOfPsi2sWidth) / sizeof(arrayOfPsi2sWidth[0]);
 
-Double_t arrayOfFitRanges[][2] = {{2.3, 4.6},{2.4,4.7}, {2.2, 4.8}};
+Double_t arrayOfFitRanges[][2] = {{2.2, 4.7},{2.4,4.5}};
+// Double_t arrayOfFitRanges[][2] = {{2.4, 4.5}};
 // Double_t arrayOfFitRanges[][2] = {{2.1, 5.},{2.2,4.5}};
 int numberOfFitRanges = sizeof(arrayOfFitRanges) / sizeof(arrayOfFitRanges[0]);
 //---------------------------------------------------------//

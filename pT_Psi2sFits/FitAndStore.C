@@ -17,14 +17,14 @@ int numberOfRapRanges = sizeof(rapRanges) / sizeof(rapRanges[0]);
 Double_t centRanges[][2] = {{0, 90}};   //Centrality integrated
 int numberOfCentRanges = sizeof(centRanges) / sizeof(centRanges[0]);
 
-// Double_t ptRanges[][2] = {{0,12}, {0,2}, {2,4}, {4,6}, {6,8}, {8,12}}; // pT differential
+Double_t ptRanges[][2] = {{0,12}, {0,2}, {2,4}, {4,6}, {6,8}, {8,12}}; // pT differential
 // Double_t ptRanges[][2] = {{0,12}};         //No mixing integrated pT
-Double_t ptRanges[][2] = {{0,2}};         //No mixing integrated pT
+// Double_t ptRanges[][2] = {{0,2}};         //No mixing integrated pT
 int numberOfPtRanges = sizeof(ptRanges) / sizeof(ptRanges[0]);
 //---------------------------------------------------------//
 
 //------------------Fit configurations---------------------//
-Int_t arrayOfBkgdFunctions[] = {kCebPol2, kExpoPol2, kDoubleExpo};
+Int_t arrayOfBkgdFunctions[] = {kExpoPol2, kDoubleExpo};
 // Int_t arrayOfBkgdFunctions[] = {kVWG2, kPol2OverPol3};
 int numberOfBkgdFunctions = sizeof(arrayOfBkgdFunctions) / sizeof(arrayOfBkgdFunctions[0]);
 
@@ -37,7 +37,8 @@ int numberOfTailsSets = sizeof(arrayOfTailsSets) / sizeof(arrayOfTailsSets[0]);
 Double_t arrayOfPsi2sWidth[] = {1.01,1.05};
 int numberOfPsi2sWidth = sizeof(arrayOfPsi2sWidth) / sizeof(arrayOfPsi2sWidth[0]);
 
-Double_t arrayOfFitRanges[][2] = {{2.3, 4.6},{2.4,4.7}, {2.2, 4.8}};
+// Double_t arrayOfFitRanges[][2] = {{2.3, 4.6},{2.4,4.7}, {2.2, 4.8}};
+Double_t arrayOfFitRanges[][2] = {{2.2, 4.7},{2.4,4.5}};
 // Double_t arrayOfFitRanges[][2] = {{2.1, 5.},{2.2,4.5}};
 int numberOfFitRanges = sizeof(arrayOfFitRanges) / sizeof(arrayOfFitRanges[0]);
 //---------------------------------------------------------//

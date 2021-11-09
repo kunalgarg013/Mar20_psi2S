@@ -189,9 +189,9 @@ void JpsiFitFunctions::DefineFunctions(RooRealVar *variable) {
 
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   RooRealVar *expoSlope1 =
-      new RooRealVar("expoSlope1", "expoSlope1", 1, -10, 10);
+      new RooRealVar("expoSlope1", "expoSlope1", 1, -100, 100);
   RooRealVar *expoSlope2 =
-      new RooRealVar("expoSlope2", "expoSlope2", 1, -10, 10);
+      new RooRealVar("expoSlope2", "expoSlope2", 1, -100, 100);
   RooRealVar *expoAlpha =
       new RooRealVar("expoAlpha", "expoAlpha", 1, -100, 100);
   RooExponential *bkgdExpoFunction = new RooExponential(
