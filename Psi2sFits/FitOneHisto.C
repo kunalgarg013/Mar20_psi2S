@@ -163,7 +163,7 @@ void FitOneHisto(TString canvasName, TH1 *histoInvMass, int fSig, Double_t psi2s
 
   //----------------------------------------------------------------------------------------------//
   int textColor = kBlack;
-  if ((fitRes->status() != 0) || (fitRes->covQual() != 3) || chi2OverNdf > 2)
+  if ((fitRes->status() != 0) || (fitRes->covQual() != 3) || chi2OverNdf > 3)
   {
     textColor = TColor::GetColor(strHexMap["redError"]);
   }
