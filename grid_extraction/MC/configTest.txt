@@ -1,0 +1,38 @@
+#Config file template. Lines that begin with # will be ignored
+
+#Absolute path to the main directroy where the "RunMyTask.C" macro can be accessed. This argument is mandatory.
+RunDir /Users/kunal/analysis/Sim
+
+#Optional name for the generate run macro
+MacroName TestMacro
+
+#List of different tasks to be added to the analysis train. For each task, specify the source path, the task name, the addTask path and name and #argument. In case the task the task is in ALICE_PHYSICS, you don't need to specify the whole path ($ALICE_PHYSICS is enough). At least one task #should be provided
+TaskPath /Users/kunal/analysis/Sim/examples
+TaskName TaskCharmoniaDimuonMC
+AddTaskName AddTaskSimpleDimuon
+TaskArgument ()
+AddTaskPath /Users/kunal/analysis/Sim/examples
+
+#AddTaskPath $ALICE_PHYSICS/OADB/macros
+#AddTaskName AddTaskPhysicsSelection
+#TaskPath $ALICE_PHYSICS
+#TaskName AliPhysicsSelectionTask
+#TaskArgument (0,0)
+
+#Run mode. It can be "local" for local analysis, or "test", "full", "terminate", "merge" for grid analysis
+RunMode merge
+
+#input file location. In case of local run mode, the file should be an AOD root file. For grid modes, run list are supported. This paramater is mandatory
+#Input /home/alidock/files/AliAOD.Muons.root
+#Input /home/alidock/embed/AliAOD.Muons.root
+
+
+Input /Users/kunal/analysis/Sim/LHC19a2/runList1.txt
+
+#Directory and pattern of the data on the grid (not needed in case of local analysis)
+GRidDataDir /alice/sim/2019/LHC19a2
+GRidDataPattern /p30/AOD/*/AliAOD.Muons.root
+
+#working and output directroy for grid analysis
+GridWorkingDir LHC19a2WeightedFinal
+GridOutputDir LHC19a2WeightedOutput

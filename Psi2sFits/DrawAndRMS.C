@@ -31,7 +31,7 @@ int numberOfBkgdFunctions = sizeof(arrayOfBkgdFunctions) / sizeof(arrayOfBkgdFun
 Int_t arrayOfSigFunctions[] = {kCB21S, kNA601S};
 int numberOfSigFunctions = sizeof(arrayOfSigFunctions) / sizeof(arrayOfSigFunctions[0]);
 
-Int_t arrayOfTailsSets[] = {kMCGeant3/*, kData13TeV*/};
+Int_t arrayOfTailsSets[] = {kMCGeant3, kData13TeV};
 int numberOfTailsSets = sizeof(arrayOfTailsSets) / sizeof(arrayOfTailsSets[0]);
 
 Double_t arrayOfPsi2sWidth[] = {1.01,1.034};
@@ -65,7 +65,7 @@ void DrawAndRMS()
         rangeNameForLegend.Form("%g-%g %%, %g < #it{p}_{T} < %g , %g < #it{y} < %g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1], rapRanges[iRapBin][0], rapRanges[iRapBin][1]);
 
         TString plotsPath;
-        plotsPath.Form("SystematicsMC/Cent-%gto%g/Pt-%gto%g/Rap-%gto%g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1], rapRanges[iRapBin][0], rapRanges[iRapBin][1]);
+        plotsPath.Form("Systematics/Cent-%gto%g/Pt-%gto%g/Rap-%gto%g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1], rapRanges[iRapBin][0], rapRanges[iRapBin][1]);
 
         gSystem->Exec(Form("mkdir -p %s", plotsPath.Data()));
 
