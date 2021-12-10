@@ -40,6 +40,8 @@
 #include "RooExponential.h"
 #include "Pol2.cxx"
 #include "Pol2.h"
+#include "Pol1.cxx"
+#include "Pol1.h"
 #include "CebPol3.cxx"
 #include "CebPol3.h"
 #include "CebPol2.cxx"
@@ -139,7 +141,7 @@ public:
     float M_upsilon2s = 10.02326;
     float M_upsilon3s = 10.3552;
 
-    enum enumFunctions{kCB21S,kNA601S,kCB22S,kNA602S,kCB23S,kNA603S,kVWG,kVWG2,kPol1OverPol2,kPol2OverPol3,kExpo,kDoubleExpo,kExpoPol2, kPol2, kCebPol2, kCebPol3, kSpPol2};
+    enum enumFunctions{kCB21S,kNA601S,kCB22S,kNA602S,kCB23S,kNA603S,kVWG,kVWG2,kPol1OverPol2,kPol2OverPol3,kExpo,kDoubleExpo,kExpoPol2, kPol2, kPol1, kCebPol2, kCebPol3, kSpPol2};
     enum fixTailsEnum {kFixNone,kFixAll, kFixLeft, kFixRight, kFixAlphas, kFixns};
 
     ClassDef(JpsiFitFunctions, 1);

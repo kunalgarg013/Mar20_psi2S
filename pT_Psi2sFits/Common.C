@@ -36,6 +36,7 @@ enum enumFunctions
   kDoubleExpo,
   kExpoPol2,
   kPol2,
+  kPol1,
   kCebPol2,
   kCebPol3,
   kSpPol2
@@ -63,7 +64,7 @@ TString arrayFitVariableAxisTitles[] =  {"N_{J/#psi}",  "N_{#psi(2s)}", "M_{J/#p
 Bool_t   arrayFitVariableIsQuantity[] = {kTRUE,         kTRUE,           kTRUE,      kTRUE,       kFALSE,       kFALSE,       kFALSE};
 int numberOfFitVariables = sizeof(arrayFitVariableNames) / sizeof(arrayFitVariableNames[0]);
 
-TString arrayFunctionNames[] = {"CB2", "NA60", "CB2", "NA60", "CB2", "NA60", "VWG", "VWG2", "Pol1ToPol2", "Pol2ToPol3", "expo", "2*expo", "expo*Pol2", "Pol2", "CebPol2", "CebPol3", "SpPol2"};
+TString arrayFunctionNames[] = {"CB2", "NA60", "CB2", "NA60", "CB2", "NA60", "VWG", "VWG2", "Pol1ToPol2", "Pol2ToPol3", "expo", "2*expo", "expo*Pol2", "Pol2", "Pol1", "CebPol2", "CebPol3", "SpPol2"};
 
 const TString arrayTailsNames[] = {"Data", "MC-GEANT3", "MC-GEANT4"};
 std::vector<double> GetTails(Int_t fSig = kCB21S, Int_t fTailsSet = kMCGeant3, Double_t ptMin = 0, Double_t ptMax = 12, Double_t rapMin = -4, Double_t rapMax = -2.5)

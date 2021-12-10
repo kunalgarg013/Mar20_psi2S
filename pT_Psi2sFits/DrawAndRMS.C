@@ -17,30 +17,28 @@ int numberOfRapRanges = sizeof(rapRanges) / sizeof(rapRanges[0]);
 Double_t centRanges[][2] = {{0, 90}};   //Centrality integrated
 int numberOfCentRanges = sizeof(centRanges) / sizeof(centRanges[0]);
 
-Double_t ptRanges[][2] = {{0,12}, {0,2}, {2,4}, {4,6}, {6,8}, {8,12}}; // pT differential
+Double_t ptRanges[][2] = {{0,12}, {0,2}, {2,4}, {4,6}, {6,12}}; // pT differential
 // Double_t ptRanges[][2] = {{0,12}};         //No mixing integrated pT
 // Double_t ptRanges[][2] = {{0,2}};         //No mixing integrated pT
 int numberOfPtRanges = sizeof(ptRanges) / sizeof(ptRanges[0]);
 //---------------------------------------------------------//
 
 //------------------Fit configurations---------------------//
-Int_t arrayOfBkgdFunctions[] = {kExpoPol2, kDoubleExpo};
-// Int_t arrayOfBkgdFunctions[] = {kVWG2, kPol2OverPol3};
+Int_t arrayOfBkgdFunctions[] = {kPol1, kDoubleExpo, kPol2/*, kVWG2*/};
 int numberOfBkgdFunctions = sizeof(arrayOfBkgdFunctions) / sizeof(arrayOfBkgdFunctions[0]);
 
 Int_t arrayOfSigFunctions[] = {kCB21S, kNA601S};
 int numberOfSigFunctions = sizeof(arrayOfSigFunctions) / sizeof(arrayOfSigFunctions[0]);
 
-Int_t arrayOfTailsSets[] = {kMCGeant3/*, kData13TeV*/};
+Int_t arrayOfTailsSets[] = {kMCGeant3, kData13TeV};
 int numberOfTailsSets = sizeof(arrayOfTailsSets) / sizeof(arrayOfTailsSets[0]);
 
-Double_t arrayOfPsi2sWidth[] = {1.01,1.05};
+Double_t arrayOfPsi2sWidth[] = {1.01, 1.034};
 int numberOfPsi2sWidth = sizeof(arrayOfPsi2sWidth) / sizeof(arrayOfPsi2sWidth[0]);
 
-Double_t arrayOfFitRanges[][2] = {{2.2, 4.7},{2.4,4.5}};
-// Double_t arrayOfFitRanges[][2] = {{2.4, 4.5}};
-// Double_t arrayOfFitRanges[][2] = {{2.1, 5.},{2.2,4.5}};
+Double_t arrayOfFitRanges[][2] = {{2.2, 4.7},{2.3,4.5}};
 int numberOfFitRanges = sizeof(arrayOfFitRanges) / sizeof(arrayOfFitRanges[0]);
+//---------------------------------------------------------//
 //---------------------------------------------------------//
 //---------------------------------------------------------//
 

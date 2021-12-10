@@ -189,9 +189,9 @@ void JpsiFitFunctions::DefineFunctions(RooRealVar *variable) {
 
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
   RooRealVar *expoSlope1 =
-      new RooRealVar("expoSlope1", "expoSlope1", 1, -100, 100);
+      new RooRealVar("expoSlope1", "expoSlope1", 1, -10, 10);
   RooRealVar *expoSlope2 =
-      new RooRealVar("expoSlope2", "expoSlope2", 1, -100, 100);
+      new RooRealVar("expoSlope2", "expoSlope2", 1, -10, 10);
   RooRealVar *expoAlpha =
       new RooRealVar("expoAlpha", "expoAlpha", 1, -100, 100);
   RooExponential *bkgdExpoFunction = new RooExponential(
@@ -223,6 +223,15 @@ void JpsiFitFunctions::DefineFunctions(RooRealVar *variable) {
       new Pol2("bkgdPol2Function", "bkgdPol2Function", *variable, *P0,
                   *P1);
   fListOfFunctions->AddAt(bkgdPol2Function, kPol2);
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+
+   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+  RooRealVar *P10 = new RooRealVar("P10", "P10", 1, -100, 100);
+  RooRealVar *P11 = new RooRealVar("P11", "P11", 0.9, -100, 100);
+  Pol1 *bkgdPol1Function =
+      new Pol1("bkgdPol1Function", "bkgdPol1Function", *variable, *P10,
+                  *P11);
+  fListOfFunctions->AddAt(bkgdPol1Function, kPol1);
   //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 
    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//

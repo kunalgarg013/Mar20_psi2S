@@ -114,9 +114,10 @@ void subMixing_pT()
         for(Int_t l=0;l<5;l++)
         {
             i= i+1;
-            cout<<Form("histoInvMass_Cent%ito%i_Pt%ito%i;1", cLow[k], cHigh[k], pTLow[l], pTHigh[l])<<endl;
+            // cout<<Form("histoInvMass_Cent%ito%i_Pt%ito%i;1", cLow[k], cHigh[k], pTLow[l], pTHigh[l])<<endl;
             hMixed[i] = (TH1F*)InvMassUnlike->Get(Form("histoInvMass_Cent%ito%i_Pt%ito%i;1", cLow[k], cHigh[k], pTLow[l], pTHigh[l]));
             cout<<Form("histoInvMass_Cent%ito%i_Pt%ito%i;1", cLow[k], cHigh[k], pTLow[l], pTHigh[l])<<"     "<<i<<endl;
+            // hMixed[i]->Scale(NormFactor[k]);
             if(i>0 && i<6)hMixed[i]->Scale(NormFactor[1]);
             if(i>5 && i<11)hMixed[i]->Scale(NormFactor[2]);
             if(i>10 && i<16)hMixed[i]->Scale(NormFactor[3]);

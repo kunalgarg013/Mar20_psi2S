@@ -24,8 +24,8 @@ int numberOfPtRanges = sizeof(ptRanges) / sizeof(ptRanges[0]);
 //---------------------------------------------------------//
 
 //------------------Fit configurations---------------------//
-Int_t arrayOfBkgdFunctions[] = {kExpoPol2, kDoubleExpo, kPol2/*, kVWG2*/};
-// Int_t arrayOfBkgdFunctions[] = {kVWG2, kPol2OverPol3};
+// Int_t arrayOfBkgdFunctions[] = {kExpoPol2, kDoubleExpo, kPol2, kPol1};
+Int_t arrayOfBkgdFunctions[] = {kVWG2, kPol2OverPol3};
 int numberOfBkgdFunctions = sizeof(arrayOfBkgdFunctions) / sizeof(arrayOfBkgdFunctions[0]);
 
 Int_t arrayOfSigFunctions[] = {kCB21S, kNA601S};
@@ -65,7 +65,7 @@ void DrawAndRMS()
         rangeNameForLegend.Form("%g-%g %%, %g < #it{p}_{T} < %g , %g < #it{y} < %g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1], rapRanges[iRapBin][0], rapRanges[iRapBin][1]);
 
         TString plotsPath;
-        plotsPath.Form("Systematics/Cent-%gto%g/Pt-%gto%g/Rap-%gto%g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1], rapRanges[iRapBin][0], rapRanges[iRapBin][1]);
+        plotsPath.Form("Systematics_chi2.5/Cent-%gto%g/Pt-%gto%g/Rap-%gto%g", centRanges[iCentBin][0], centRanges[iCentBin][1], ptRanges[iPtBin][0], ptRanges[iPtBin][1], rapRanges[iRapBin][0], rapRanges[iRapBin][1]);
 
         gSystem->Exec(Form("mkdir -p %s", plotsPath.Data()));
 
